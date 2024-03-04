@@ -1,43 +1,181 @@
-from Nodo import Node
+from .Nodo import Nodo
 
-class LinkedList:
-    def _init_(self):
-        self.head = None
+class Lista:
+    def __init__(self):
+        self.primero = None
+        self.size = 0
 
-    def is_empty(self):
-        return self.head is None
+    def insertar(self, dato):
+        nuevo = Nodo(dato) # Creamos un nuevo nodo
 
-    def append(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
+        if self.primero == None: #Si la lista está vacía
+            self.primero = nuevo
+
+        else: # Si la lista no está vacía
+            actual = self.primero # Obtenemos el primero de la lista
+            while actual.siguiente != None: # Mientras el nodo actual tenga un nodo siguiente
+                actual = actual.siguiente  # El nodo actual se mueve al siguiente
+            actual.siguiente = nuevo # Se agrega el nodo
+        self.size += 1
+
+    def imprimir(self):
+        actual = self.primero
+        while actual.siguiente != None:
+            print(actual.dato)
+            actual = actual.siguiente
+
+        print(actual.dato)
+
+    def imprimirPersona(self):
+        actual = self.primero
+        while actual.siguiente != None:
+            print(actual.dato.nombre, actual.dato.edad)
+            actual = actual.siguiente
+
+        print(actual.dato.nombre, actual.dato.edad)
+
+    def buscar(self, codigoIngresado):
+        actual = self.primero
+        while actual != None:
+            if actual.dato.codigo == codigoIngresado:
+                return actual.dato
+            actual = actual.siguiente
+        return None
+    
+    def buscarAlumno(self, carnetIngresado):
+        actual = self.primero
+        while actual != None:
+            if actual.dato.carnet == carnetIngresado:
+                return actual.dato
+            actual = actual.siguiente
+        return None
+
+    # Bubblesort
+    def BubbleSort(self):
+        if self.primero is None or self.primero.siguiente is None:
+            return 
+
+        last = None
+        while last != self.primero:
+            actual = self.primero
+            while actual.siguiente != last:
+                if actual.dato.nota > actual.siguiente.dato.nota:
+                    actual.dato, actual.siguiente.dato = actual.siguiente.dato, actual.dato
+                actual = actual.siguiente
+            last = actual
+
+        print("Lista ordenada: ")
+        self.imprimir()
+                
+    # InsertionSort
+    
+    def insertionSort(self):
+        if self.primero is None or self.primero.siguiente is None:
             return
-        last_node = self.head
-        while last_node.next:
-            last_node = last_node.next
-        last_node.next = new_node
+        
+        actual = self.primero.siguiente
+        while actual != None:
+            actual2 = self.primero
+            while actual2 != actual:
+                if actual.dato.nota < actual2.dato.nota:
+                    actual.dato, actual2.dato = actual2.dato, actual.dato
+                actual2 = actual2.siguiente
+            actual = actual.siguiente
 
-    def prepend(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
+        print("Lista ordenada:")
+        self.imprimir()
 
-    def delete(self, data):
-        if self.head is None:
+        print("Lista ordenada: ")
+        self.imprimir()
+
+    
+    from .Nodo import Nodo
+
+class Lista:
+    def __init__(self):
+        self.primero = None
+        self.size = 0
+
+    def insertar(self, dato):
+        nuevo = Nodo(dato) # Creamos un nuevo nodo
+
+        if self.primero == None: #Si la lista está vacía
+            self.primero = nuevo
+
+        else: # Si la lista no está vacía
+            actual = self.primero # Obtenemos el primero de la lista
+            while actual.siguiente != None: # Mientras el nodo actual tenga un nodo siguiente
+                actual = actual.siguiente  # El nodo actual se mueve al siguiente
+            actual.siguiente = nuevo # Se agrega el nodo
+        self.size += 1
+
+    def imprimir(self):
+        actual = self.primero
+        while actual.siguiente != None:
+            print(actual.dato)
+            actual = actual.siguiente
+
+        print(actual.dato)
+
+    def imprimirPersona(self):
+        actual = self.primero
+        while actual.siguiente != None:
+            print(actual.dato.nombre, actual.dato.edad)
+            actual = actual.siguiente
+
+        print(actual.dato.nombre, actual.dato.edad)
+
+    def buscar(self, codigoIngresado):
+        actual = self.primero
+        while actual != None:
+            if actual.dato.codigo == codigoIngresado:
+                return actual.dato
+            actual = actual.siguiente
+        return None
+    
+    def buscarAlumno(self, carnetIngresado):
+        actual = self.primero
+        while actual != None:
+            if actual.dato.carnet == carnetIngresado:
+                return actual.dato
+            actual = actual.siguiente
+        return None
+
+    # Bubblesort
+    def BubbleSort(self):
+        if self.primero is None or self.primero.siguiente is None:
+            return 
+
+        last = None
+        while last != self.primero:
+            actual = self.primero
+            while actual.siguiente != last:
+                if actual.dato.nota > actual.siguiente.dato.nota:
+                    actual.dato, actual.siguiente.dato = actual.siguiente.dato, actual.dato
+                actual = actual.siguiente
+            last = actual
+
+        print("Lista ordenada: ")
+        self.imprimir()
+                
+    # InsertionSort
+    
+    def insertionSort(self):
+        if self.primero is None or self.primero.siguiente is None:
             return
-        if self.head.data == data:
-            self.head = self.head.next
-            return
-        current_node = self.head
-        while current_node.next:
-            if current_node.next.data == data:
-                current_node.next = current_node.next.next
-                return
-            current_node = current_node.next
+        
+        actual = self.primero.siguiente
+        while actual != None:
+            actual2 = self.primero
+            while actual2 != actual:
+                if actual.dato.nota < actual2.dato.nota:
+                    actual.dato, actual2.dato = actual2.dato, actual.dato
+                actual2 = actual2.siguiente
+            actual = actual.siguiente
 
-    def display(self):
-        current_node = self.head
-        while current_node:
-            print(current_node.data, end=" -> ")
-            current_node = current_node.next
-        print("None")
+        print("Lista ordenada:")
+        self.imprimir()
+
+        print("Lista ordenada: ")
+        self.imprimir()
+

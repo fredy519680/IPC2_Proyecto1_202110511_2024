@@ -1,37 +1,27 @@
-from Lista import LinkedList
+from Lista import Lista
+Listan = Lista()
 
-class MainMenu:
-    def _init_(self):
-        self.linked_list = LinkedList()
+def mostrar_menu():
+    print("1. Mostrar la lista")
+    print("2. Agregar un nodo a la lista")
+    print("3. Salir")
+    opcion = input("Ingrese el número de la opción que desea realizar: ")
+    return opcion
 
-    def display_menu(self):
-        print("Menu:")
-        print("1. Agregar dato a la lista")
-        print("2. Otra opción")
-        print("3. Otra opción")
-        print("4. Otra opción")
-        print("5. Salir")
+def main():
 
-    def run(self):
-        while True:
-            self.display_menu()
-            choice = input("Selecciona una opción: ")
-            if choice == "1":
-                data = input("Ingresa el dato que deseas agregar a la lista: ")
-                self.linked_list.append(data)
-                print("Dato agregado correctamente a la lista.")
-            elif choice == "2":
-                pass
-            elif choice == "3":
-                pass
-            elif choice == "4":
-                pass
-            elif choice == "5":
-                print("Saliendo del programa...")
-                break
-            else:
-                print("Opción no válida. Por favor, selecciona una opción válida.")
+    while True:
+        opcion = mostrar_menu()
 
-if _name_ == "_main_":
-    main_menu = MainMenu()
-    main_menu.run()
+        if opcion == "1":
+            print("Lista actual:")
+            Lista.imprimir()
+        elif opcion == "2":
+            valor = input("Ingrese el valor del nodo a agregar: ")
+            Listan.agregar(valor)
+            print("Nodo agregado exitosamente.")
+        elif opcion == "3":
+            print("Saliendo del programa.")
+            break
+        else:
+            print("Opción inválida. Por favor, ingrese un número válido.")
